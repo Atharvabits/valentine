@@ -113,6 +113,30 @@ function LoveLetter() {
               </p>
             </div>
           </div>
+
+          {/* Photo Collage */}
+          <div className="mt-10 mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-rose-500 text-center mb-6">
+              Our Moments Together 💕
+            </h3>
+            <div className="collage-grid">
+              <div className="collage-item collage-item-1">
+                <img src="/photo1.png" alt="Us" />
+              </div>
+              <div className="collage-item collage-item-2">
+                <img src="/photo2.png" alt="Us" />
+              </div>
+              <div className="collage-item collage-item-3">
+                <img src="/photo3.png" alt="Us" />
+              </div>
+              <div className="collage-item collage-item-4">
+                <img src="/photo4.png" alt="Us" />
+              </div>
+            </div>
+            <p className="text-center text-rose-400 mt-6 text-lg italic">
+              Every moment with you is my favourite memory 🤍
+            </p>
+          </div>
         </div>
       )}
     </div>
@@ -182,7 +206,7 @@ export default function Page() {
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
+        <div className={`flex flex-col items-center justify-center pt-4 selection:bg-rose-600 selection:text-white text-zinc-900 ${yesPressed ? 'min-h-screen overflow-y-auto py-10' : 'overflow-hidden h-screen -mt-16'}`}>
           {yesPressed ? (
             <>
               <Balloons />
