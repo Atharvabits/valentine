@@ -131,3 +131,119 @@ body {
   pointer-events: none;
   z-index: 50;
 }
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Envelope */
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope {
+  position: relative;
+  width: 180px;
+  height: 120px;
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.08);
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  width: 180px;
+  height: 100px;
+  background: linear-gradient(135deg, #fecdd3, #fb7185);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-top: 70px solid #f43f5e;
+  z-index: 2;
+  animation: flapWiggle 2s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes flapWiggle {
+  0%, 100% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(15deg);
+  }
+}
+
+.envelope-letter-peek {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  z-index: 1;
+  animation: peekUp 2s ease-in-out infinite;
+}
+
+@keyframes peekUp {
+  0%, 100% {
+    top: 15px;
+  }
+  50% {
+    top: 2px;
+  }
+}
+
+/* Letter paper */
+.letter-open {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.letter-paper {
+  position: relative;
+}
+
+.letter-text p {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.letter-text p:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.letter-text p:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.letter-text p:nth-child(3) {
+  animation-delay: 1.3s;
+}
+
+.letter-text p:nth-child(4) {
+  animation-delay: 1.8s;
+}
