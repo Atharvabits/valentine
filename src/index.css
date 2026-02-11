@@ -21,4 +21,113 @@ body {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@keyframes floatAround1 {
+  0% {
+    top: 5%;
+    left: 5%;
+    transform: rotate(-12deg);
+  }
+  20% {
+    top: 15%;
+    left: 70%;
+    transform: rotate(8deg);
+  }
+  40% {
+    top: 60%;
+    left: 80%;
+    transform: rotate(-5deg);
+  }
+  60% {
+    top: 75%;
+    left: 20%;
+    transform: rotate(12deg);
+  }
+  80% {
+    top: 30%;
+    left: 10%;
+    transform: rotate(-15deg);
+  }
+  100% {
+    top: 5%;
+    left: 5%;
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes floatAround2 {
+  0% {
+    bottom: 10%;
+    right: 10%;
+    transform: rotate(12deg);
+  }
+  20% {
+    bottom: 60%;
+    right: 70%;
+    transform: rotate(-8deg);
+  }
+  40% {
+    bottom: 70%;
+    right: 15%;
+    transform: rotate(15deg);
+  }
+  60% {
+    bottom: 20%;
+    right: 5%;
+    transform: rotate(-10deg);
+  }
+  80% {
+    bottom: 5%;
+    right: 60%;
+    transform: rotate(8deg);
+  }
+  100% {
+    bottom: 10%;
+    right: 10%;
+    transform: rotate(12deg);
+  }
+}
+
+.float-bounce {
+  animation: floatAround1 12s ease-in-out infinite;
+}
+
+.float-bounce2 {
+  animation: floatAround2 15s ease-in-out infinite;
+}
+
+@keyframes balloonRise {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-20vh) rotate(8deg);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-40vh) rotate(-6deg);
+  }
+  60% {
+    transform: translateY(-60vh) rotate(10deg);
+  }
+  80% {
+    transform: translateY(-80vh) rotate(-4deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+.balloon {
+  position: fixed;
+  bottom: -80px;
+  font-size: 3rem;
+  animation: balloonRise linear forwards;
+  pointer-events: none;
+  z-index: 50;
 }

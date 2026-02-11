@@ -1,6 +1,63 @@
-import { useState } from "react";
-import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
-import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
+import { useState, useEffect } from "react";
+
+const balloonEmojis = ["🎈", "❤️", "💕", "🩷", "💗", "🫶", "🎀", "💖", "🩵", "🎉"];
+
+function Balloons() {
+  const [balloons, setBalloons] = useState([]);
+
+  useEffect(() => {
+    const totalBalloons = 25;
+    const newBalloons = [];
+    for (let i = 0; i < totalBalloons; i++) {
+      newBalloons.push({
+        id: i,
+        left: Math.random() * 95 + "%",
+        emoji: balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)],
+        delay: Math.random() * 3 + "s",
+        duration: 4 + Math.random() * 4 + "s",
+        size: 2 + Math.random() * 2 + "rem",
+      });
+    }
+    setBalloons(newBalloons);
+
+    // Keep spawning new waves
+    const interval = setInterval(() => {
+      const wave = [];
+      for (let i = 0; i < 10; i++) {
+        wave.push({
+          id: Date.now() + i,
+          left: Math.random() * 95 + "%",
+          emoji: balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)],
+          delay: Math.random() * 2 + "s",
+          duration: 4 + Math.random() * 4 + "s",
+          size: 2 + Math.random() * 2 + "rem",
+        });
+      }
+      setBalloons((prev) => [...prev.slice(-30), ...wave]);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      {balloons.map((b) => (
+        <div
+          key={b.id}
+          className="balloon"
+          style={{
+            left: b.left,
+            animationDelay: b.delay,
+            animationDuration: b.duration,
+            fontSize: b.size,
+          }}
+        >
+          {b.emoji}
+        </div>
+      ))}
+    </>
+  );
+}
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
@@ -41,6 +98,7 @@ export default function Page() {
     <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
       {yesPressed ? (
         <>
+          <Balloons />
           <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
           <div className="text-4xl md:text-6xl font-bold my-4">
             Ok Yayyyyy!!!
@@ -48,14 +106,16 @@ export default function Page() {
         </>
       ) : (
         <>
-          <img
-            src={lovesvg}
-            className="fixed animate-pulse top-10 md:left-24 left-6 md:w-40 w-28"
-          />
-          <img
-            src={lovesvg2}
-            className="fixed bottom-16 -z-10 animate-pulse md:right-24 right-10 md:w-40 w-32"
-          />
+          <div
+            className="fixed float-bounce -z-10 text-2xl md:text-4xl font-bold text-rose-500 drop-shadow-lg opacity-60"
+          >
+            Forever Yours
+          </div>
+          <div
+            className="fixed float-bounce2 -z-10 text-2xl md:text-4xl font-bold text-rose-500 drop-shadow-lg opacity-60"
+          >
+            You & Me Always
+          </div>
           <img
             className="h-[230px] rounded-lg shadow-lg"
             src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.webp"
@@ -84,18 +144,13 @@ export default function Page() {
     </div>
   );
 }
-
 const Footer = () => {
   return (
     <a
-      className="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-1 rounded border-rose-300"
-      href="https://github.com/Xeven777/valentine"
-      target="__blank"
+      
     >
-      Made with{" "}
-      <span role="img" aria-label="heart">
-        ❤️
-      </span>
+      
     </a>
   );
 };
+
